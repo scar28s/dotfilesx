@@ -125,7 +125,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock("%I:%M %p")
+mytextclock = wibox.widget.textclock("%a %b %d, %I:%M %p")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -260,8 +260,8 @@ root.buttons(gears.table.join(
 -- }}}
 
 -- Set qt theme
-awful.spawn.with_shell("export QT_QPA_PLATFORMTHEME,qt6ct")
-awful.spawn.with_shell("export QT_STYLE_VERRIDE=adwaita_dark")
+-- awful.spawn.with_shell("export QT_QPA_PLATFORMTHEME,qt6ct")
+-- awful.spawn.with_shell("export QT_STYLE_OVERRIDE=adwaita_dark")
 awful.spawn.with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark'")
 awful.spawn.with_shell("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
 
@@ -289,10 +289,10 @@ globalkeys = gears.table.join(
 	awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
 	awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
 
-	awful.key({ modkey }, "k", function()
+	awful.key({ modkey }, "l", function()
 		awful.client.focus.byidx(1)
 	end, { description = "focus next by index", group = "client" }),
-	awful.key({ modkey }, "j", function()
+	awful.key({ modkey }, "h", function()
 		awful.client.focus.byidx(-1)
 	end, { description = "focus previous by index", group = "client" }),
 	awful.key({ modkey, "Shift" }, "d", function()
@@ -312,12 +312,12 @@ globalkeys = gears.table.join(
 	awful.key({ modkey, "Shift" }, "k", function()
 		awful.client.swap.byidx(-1)
 	end, { description = "swap with previous client by index", group = "client" }),
-	awful.key({ modkey }, "h", function()
-		awful.screen.focus_relative(1)
-	end, { description = "focus the next screen", group = "screen" }),
-	awful.key({ modkey }, "l", function()
-		awful.screen.focus_relative(-1)
-	end, { description = "focus the previous screen", group = "screen" }),
+	-- awful.key({ modkey }, "h", function()
+	-- 	awful.screen.focus_relative(1)
+	-- end, { description = "focus the next screen", group = "screen" }),
+	-- awful.key({ modkey }, "l", function()
+	-- 	awful.screen.focus_relative(-1)
+	-- end, { description = "focus the previous screen", group = "screen" }),
 	awful.key({ modkey }, "a", function()
 		awful.screen.focus_relative(1)
 	end, { description = "focus the next screen", group = "screen" }),
