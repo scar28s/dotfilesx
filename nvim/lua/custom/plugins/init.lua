@@ -76,4 +76,9 @@ return {
     build = 'make install_jsregexp', -- Optional for regex support
     dependencies = { 'rafamadriz/friendly-snippets' },
   },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = {},
+  },
 }

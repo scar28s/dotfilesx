@@ -72,7 +72,7 @@ awful.layout.layouts = {
 	-- awful.layout.suit.tile.left,
 	-- awful.layout.suit.tile.bottom,
 	-- awful.layout.suit.tile.top,
-	-- awful.layout.suit.fair,
+	awful.layout.suit.fair,
 	-- awful.layout.suit.fair.horizontal,
 	-- awful.layout.suit.spiral,
 	-- awful.layout.suit.spiral.dwindle,
@@ -251,14 +251,15 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-	awful.button({}, 3, function()
-		mymainmenu:toggle()
-	end),
-	awful.button({}, 4, awful.tag.viewnext),
-	awful.button({}, 5, awful.tag.viewprev)
+	-- awful.button({}, 3, function()
+	-- 	mymainmenu:toggle()
+	-- end),
+	-- awful.button({}, 4, awful.tag.viewnext),
+	-- awful.button({}, 5, awful.tag.viewprev)
 ))
 -- }}}
 
+-- Startup options
 -- Set qt theme
 -- awful.spawn.with_shell("export QT_QPA_PLATFORMTHEME,qt6ct")
 -- awful.spawn.with_shell("export QT_STYLE_OVERRIDE=adwaita_dark")
@@ -277,6 +278,14 @@ awful.spawn.with_shell("xrandr --output HDMI-1 --mode 1920x1080 --rate 99.65")
 awful.spawn.with_shell("picom --config ~/.config/picom/picom.conf")
 
 awful.spawn.with_shell("xrandr --output DP-0 --primary")
+
+-- Start tablet driver
+awful.spawn.with_shell("systemctl --user enable opentabletdriver.service --now")
+
+-- suspend after xm, turn off monitor after ym
+awful.spawn.with_shell(
+	"xidlehook --not-when-fullscreen --timer 300 'xset dpms force off' '' --timer 900 'systemctl suspend' ''"
+)
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
